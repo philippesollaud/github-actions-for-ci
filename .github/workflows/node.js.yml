@@ -18,12 +18,14 @@ jobs:
       run: |
         npm install
         npm run build
+    - uses: actions/upload-artifact@master
+      with:
+        name: webpack artifacts
+        path: public/
         
   test:
-      - uses: actions/upload-artifact@master
-        with:
     needs: build
-          path: public/
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         os: [ubuntu-latest, windows-2016]
